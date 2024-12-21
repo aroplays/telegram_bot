@@ -7,8 +7,8 @@ document.getElementById('gdpuri').addEventListener('click', function() {
 });
 
 function sendScoreToTelegram(score) {
-    const token = 'YOUR_BOT_TOKEN';  // توکن ربات خود را اینجا وارد کنید
-    const chatId = 'YOUR_CHAT_ID';  // شناسه چت خود را اینجا وارد کنید
+    const token = '7984427469:AAEI1Z5W2vvmVqXcoLqqi1-3tHDJ_Z177Ns';  // توکن ربات خود را اینجا وارد کنید
+    const chatId = '7984427469';  // شناسه چت خود را اینجا وارد کنید
 
     const message = `امتیاز شما: ${score}`;
     const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`;
