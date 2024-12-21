@@ -3,16 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ربات تلگرام گادپوری</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>گاد پوری کمبت</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #212121; /* رنگ پس‌زمینه سیاه */
+            margin: 0;
+            color: #ff9800; /* رنگ متن نارنجی */
+        }
+        h1 {
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* سایه متن */
+        }
+        #score {
+            font-size: 24px;
+            margin: 20px;
+            color: #ffeb3b; /* رنگ امتیاز زرد روشن */
+            font-weight: bold;
+        }
+        #tokens {
+            font-size: 20px;
+            color: #ffeb3b; /* رنگ توکن */
+            margin: 10px;
+        }
+        #clickableImage {
+            width: 300px; /* عرض عکس */
+            height: auto; /* حفظ نسبت ابعاد */
+            cursor: pointer; /* نشانگر ماوس */
+            transition: transform 0.2s; /* افکت بزرگنمایی */
+            border-radius: 15px; /* گرد کردن گوشه‌ها */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* سایه تصویر */
+        }
+        #clickableImage:hover {
+            transform: scale(1.1); /* بزرگنمایی عکس در حالت hover */
+        }
+        #plusOne {
+            position: absolute;
+            font-size: 40px;
+            color: #ffeb3b; /* رنگ علامت +1 */
+            display: none; /* پنهان کردن علامت به طور پیش‌فرض */
+            transition: opacity 0.5s; /* افکت ناپدید شدن */
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px; /* فاصله زیر دکمه‌ها */
+        }
+        .action-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff9800; /* رنگ دکمه نارنجی */
+            color: black; /* رنگ متن دکمه سیاه */
+            border: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s; /* افکت تغییر رنگ */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* سایه دکمه‌ها */
+        }
+        .action-button:hover {
+            background-color: #fb8c00; /* رنگ تیره‌تر در حالت hover */
+            transform: translateY(-2px); /* حرکت دکمه به بالا */
+        }
+        #canvas {
+            display: none; /* پنهان کردن canvas */
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>به ربات گادپوری خوش آمدید!</h1>
-        <img src="click_image.jpg" id="gdpuri" alt="گادپوری" />
-        <p>برای کسب امتیاز روی عکس کلیک کنید!</p>
-        <p id="score">امتیاز: 0</p>
+    <div class="action-buttons">
+        <button class="action-button">Upgrade</button>
+        <button class="action-button">Airdrop</button>
+        <button class="action-button">Settings</button>
     </div>
-    <script src="script.js"></script>
+    
+    <h1>گاد پوری کمبت</h1>
+    
+    <div id="score">امتیاز: 0</div>
+    <div id="tokens">توکن‌ها: 0</div> <!-- نمایش تعداد توکن‌ها -->
+    <img id="clickableImage" src="click_image.jpg" alt="گادپوری کمبت"> <!-- تغییر مسیر به عکس آپلود شده -->
+    <div id="plusOne">+1</div> <!-- علامت +1 -->
+    <canvas id="canvas"></canvas> <!-- عنصر canvas برای عکاسی -->
+
+    <script>
+        let score = 0;
+        let tokens = 0; // متغیر جدید برای نگهداری تعداد توکن‌ها
+
+        // افزایش امتیاز با کلیک بر روی عکس
+        document.getElementById('clickableImage').addEventListener('click', function() {
+            score++;
+            document.getElementById('score').innerText = 'امتیاز: ' + score;
+
+            // بررسی و اضافه کردن توکن هر 10 امتیاز
+            if (score % 10 === 0) {
+                tokens++;
+                document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens; // به‌روزرسانی نمایش توکن‌ها
+            }
+
+            // نمایش علامت +1
+            const plusOne = document.getElementById('plusOne');
+            plusOne.style.display = 'block'; // نمایش علامت
+            plusOne.style.opacity = '1'; // تنظیم شفافیت
+            setTimeout(() => {
+                plusOne.style.opacity = '0'; // ناپدید شدن علامت
+            }, 500); // بعد از 0.5 ثانیه ناپدید می‌شود
+        });
+
+        // گرفتن عکس از دکمه‌ها
+        document.getElementById('clickableImage').addEventListener('click', function() {
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+
+            // تنظیم اندازه canvas
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // رسم محتوای صفحه در canvas
+            context.fillStyle = '#212121'; // رنگ پس‌زمینه
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            context.font = '40px Arial';
+            context.fillStyle = '#ff9800';
+            context.fillText('امتیاز: ' + score, 50, 100);
+            context.fillText('توکن‌ها: ' + tokens, 50, 150);
+            context.drawImage(document.getElementById('clickableImage'), 50, 200);
+            
+            // ایجاد لینک برای دانلود تصویر
+            const link = document.createElement('a');
+            link.download = 'screenshot.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click(); // دانلود تصویر
+        });
+    </script>
 </body>
 </html>
