@@ -657,45 +657,9 @@
         let upgrade3Price = 1000;
         let upgrade3Profit = 1200;
          let scale = 1;
-         let clickIncrease = 1;
-         document.addEventListener('DOMContentLoaded', function () {
+     
     let image = document.getElementById('clickableImage');
-    let container = document.getElementById('container');
-
-    // ایجاد علامت +1 در موقعیت کلیک
-    function createPlusOne(x, y) {
-        let plusOne = document.createElement('div');
-        plusOne.classList.add('plusOne');
-        plusOne.textContent = '+';
-        plusOne.style.left = `${x}px`;
-        plusOne.style.top = `${y}px`;
-
-        container.appendChild(plusOne);
-
-        // حذف علامت +1 بعد از 1.5 ثانیه
-        setTimeout(() => {
-            plusOne.remove();
-        }, 500);
-    }
-
-    // افزودن رویداد برای کلیک
-    image.addEventListener('click', function (e) {
-        let rect = image.getBoundingClientRect();
-        let x = e.clientX - rect.left;
-        let y = e.clientY - rect.top;
-        createPlusOne(x, y);
-    });
-
-    // افزودن رویداد برای لمس
-    image.addEventListener('touchstart', function (e) {
-        e.preventDefault(); // جلوگیری از رفتار پیش‌فرض
-        let rect = image.getBoundingClientRect();
-        let x = e.touches[0].clientX - rect.left;
-        let y = e.touches[0].clientY - rect.top;
-        createPlusOne(x, y);
-    });
-});
-
+    
 
         document.getElementById('score').innerText = 'امتیاز: ' + score;
         document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
