@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>گاد پوری کمبت</title>
+   
+   
     <style>
+       
+       
        body {
             font-family: 'Arial', sans-serif;
             display: flex;
@@ -16,6 +20,8 @@
             margin: 0;
             color: #ff9800;
         }
+
+
         #header {
             font-size: 24px;
             color: #ff9800;
@@ -27,11 +33,15 @@
             transform: translateX(-50%);
             animation: slideIn 1.5s ease-out;
         }
+
+
         h1 {
             margin-top: 20px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             animation: slideIn 1s ease-out;
         }
+
+
         #score, #tokens, #level, #profit {
             font-size: 24px;
             margin: 20px;
@@ -40,18 +50,67 @@
             opacity: 0;
             animation: fadeIn 2s forwards;
         }
-        #clickableImage {
-            width: 300px;
-            height: auto;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            animation: zoomIn 1s ease-out;
-        }
+
+
+      
+        /* مخفی کردن دکمه و عکس هنگام باز شدن پنجره */
+.hidden {
+    display: none;
+}
+
+/* تنظیم لایه‌ها برای پنجره‌ها */
+#background-image {
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+#clickableImage {
+   
+        
+         cursor: pointer;
+         transition: transform 0.3s ease-in-out;
+         border-radius: 50%; /* برای دایره‌ای شدن عکس */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+         animation: zoomIn 1s ease-out;
+         font-size: 16px;
+         border: none;
+    z-index: -3;  /* دکمه در پایین‌ترین لایه قرار می‌گیرد */
+}
+
+/* پنجره آپگرید */
+.upgrade-section {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* پنجره آپگرید در بالاترین لایه */
+}
+
+/* پنجره ابوترو */
+.about-section {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* پنجره ابوترو در بالاترین لایه */
+}
+
+
         #clickableImage:hover {
             transform: scale(1.1);
         }
+
+
         #plusOne {
             position: absolute;
             font-size: 40px;
@@ -60,12 +119,16 @@
             transition: opacity 0.5s ease-in-out;
             animation: plusOneAnimation 0.5s ease-out;
         }
+
+
         .action-buttons {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
             animation: fadeIn 1.5s ease-out;
         }
+
+
         .action-button {
             padding: 10px 20px;
             font-size: 16px;
@@ -79,10 +142,14 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             animation: slideIn 1.5s ease-out;
         }
+
+
         .action-button:hover {
             background-color: #fb8c00;
             transform: translateY(-5px);
         }
+
+
         #congratsMessage {
             position: fixed;
             top: 50%;
@@ -100,6 +167,8 @@
             animation: fadeInMessage 1s ease-out;
         }
 
+
+
         #aboutModal {
             position: fixed;
             top: 50%;
@@ -116,13 +185,19 @@
             animation: fadeInModal 0.5s ease-out;
             text-align: center;
         }
+
+
         #aboutModal h2 {
             margin-bottom: 15px;
         }
+
+
         #aboutModal p {
             font-size: 16px;
             line-height: 1.5;
         }
+
+
         #closeModal {
             background-color: #ff9800;
             color: black;
@@ -137,6 +212,8 @@
         #closeModal:hover {
             background-color: #fb8c00;
         }
+
+
         #statsContainer {
             display: flex;
             justify-content: center;
@@ -148,6 +225,8 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             animation: fadeIn 1s ease-out;
         }
+
+
         .stat-item {
             font-size: 20px;
             font-weight: bold;
@@ -155,6 +234,8 @@
             text-align: center;
             position: relative;
         }
+
+
         .stat-item .update-effect {
             position: absolute;
             top: -20px;
@@ -166,35 +247,198 @@
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
+        @media screen and (max-width: 768px) {
+         body {
+        padding: 10px;
+        font-size: 14px;
+       }
+
+        #header {
+            font-size: 20px;
+            top: 10px;
+        }
+
+        h1 {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        #clickableImage {
+            width: 80%;
+            height: auto;
+            margin: 10px 0;
+        }
+
+        .action-buttons {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .action-button {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+
+        #statsContainer {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stat-item {
+            font-size: 16px;
+        }
+
+        #aboutModal,
+        #upgradeModal {
+            width: 90%;
+            height: auto;
+        }
+
+        .upgrade-option {
+            font-size: 16px;
+        }
+
+        #closeModal,
+        #closeUpgradeModal {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+          }
+
+         @media screen and (max-width: 480px) {
+        body {
+            font-size: 12px;
+        }
+
+        #header {
+            font-size: 18px;
+        }
+
+        h1 {
+            font-size: 16px;
+        }
+
+        #clickableImage {
+            width: 100%;
+        }
+
+        .action-button {
+            font-size: 12px;
+            padding: 6px 10px;
+        }
+
+        .stat-item {
+            font-size: 14px;
+        }
+
+        #aboutModal,
+        #upgradeModal {
+            padding: 100سpx;
+        }
+
+        #closeModal,
+        #closeUpgradeModal {
+            font-size: 12px;
+        }
+    }
+        #aboutModal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.85); /* شفافیت برای تطابق بیشتر */
+            color: #ffeb3b; /* رنگ طلایی برای متن */
+            padding: 30px;
+            width: 90%; /* عرض بیشتر برای گوشی‌ها */
+            max-width: 500px; /* محدود کردن عرض برای دسکتاپ */
+            height: auto; /* ارتفاع خودکار برای تطابق با متن */
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            display: none;
+            animation: fadeInModal 0.5s ease-out;
+            text-align: justify; /* متن خواناتر */
+            line-height: 1.6; /* فاصله بین خطوط */
+            overflow-y: auto; /* اسکرول برای متن‌های بلند */
+            position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 1000; /* پنجره ابوترو در بالاترین لایه */
+}
+        
+
+        #aboutModal h2 {
+            margin-bottom: 15px;
+            color: #ff9800; /* رنگ نارنجی برای عنوان */
+            font-size: 24px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        #aboutModal p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #fff; /* رنگ سفید برای متن‌های توضیحی */
+        }
+
+        #closeModal {
+            background-color: #ff9800;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+        }
+
+        #closeModal:hover {
+            background-color: #fb8c00;
+        }
+
+
         @keyframes fadeIn {
             0% { opacity: 0; transform: scale(0.9); }
             100% { opacity: 1; transform: scale(1); }
         }
+
+
 
         @keyframes slideIn {
             0% { transform: translateY(-20px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
 
+
+
         @keyframes zoomIn {
             0% { transform: scale(0.9); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
+
+
 
         @keyframes plusOneAnimation {
             0% { transform: scale(0); opacity: 1; }
             100% { transform: scale(1); opacity: 0; }
         }
 
+
+
         @keyframes fadeInMessage {
             0% { opacity: 0; transform: translateY(-50%); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
+
+
         @keyframes fadeInModal {
             0% { opacity: 0; transform: translateY(-20px); }
             100% { opacity: 1; transform: translateY(0); }
         }
+
+
         #upgradeModal {
             position: fixed;
             top: 50%;
@@ -204,18 +448,29 @@
             color: #ffeb3b;
             padding: 30px;
             width: 400px;
-            height: 300px;
+            height: 450px;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
             display: none;
             text-align: center;
-        }
+            position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 1000; /* پنجره آپگرید در بالاترین لایه */
+}
+        
+
+
         .upgrade-option {
             margin: 20px;
             font-size: 20px;
             font-weight: bold;
             color: #ffeb3b;
         }
+
+
         .upgrade-option button {
             background-color: #ff9800;
             color: black;
@@ -230,6 +485,64 @@
             background-color: #fb8c00;
         }
 
+        #container {
+    position: relative;
+    display: inline-block;
+}
+
+#clickableImage {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+}
+
+.plusOne {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(255, 132, 0);
+    
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/* لایه پوششی */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* رنگ نیمه شفاف */
+    display: none; /* ابتدا لایه پوششی نمایش داده نمی‌شود */
+    z-index: 999; /* قرار دادن لایه در بالای تمام محتوای صفحه */
+}
+
+/* وقتی که لایه پوششی فعال می‌شود */
+.overlay.active {
+    display: block;
+}
+
+
     </style>
 </head>
 <body>
@@ -241,7 +554,11 @@
         <button class="action-button">Airdrop</button>
     </div>
 
+
+
     <h1>گاد پوری کمبت</h1>
+
+
 
     <div id="statsContainer">
         <div class="stat-item">
@@ -259,36 +576,74 @@
         <div class="stat-item">
             <span id="profit">پروفیت کفتری: 100</span>
         </div>
+
+
     </div>
 
-    <img id="clickableImage" src="click_image.jpg" alt="گادپوری کمبت">
+
+    
     <div id="congratsMessage">باز شدن سطح جدید گاد پوری</div>
     <div id="plusOne">+1</div>
 
+
     <!-- About Modal -->
-    <div id="aboutModal">
-        <h2>درباره بازی</h2>
-        <p>این بازی توسط Arvin طراحی و توسعه یافته است. هدف از این بازی ارائه یک تجربه سرگرم‌کننده و چالش‌برانگیز برای کاربران است. شما با کلیک کردن و ارتقاء پروفیت خود، امتیاز جمع می‌کنید.</p>
-        <button id="closeModal">بستن</button>
-    </div>
+
+<div id="aboutModal">
+    <h2>درباره بازی</h2>
+    <p><strong>نام بازی:</strong> گادپوری کمبت</p>
+    <p>
+        <strong>توضیح:</strong> گادپوری کمبت یک بازی جذاب و هیجان‌انگیز کلیکی است که در آن با کلیک کردن روی تصویر گادپوری، امتیاز و توکن جمع‌آوری می‌کنید. هدف شما ارتقاء سطح و خرید کارت‌های ویژه برای افزایش سود و پیشرفت در بازی است. این بازی ساده، سرگرم‌کننده و اعتیادآور است و هر بار که بازی می‌کنید، چالش‌ها و لذت بیشتری تجربه خواهید کرد.
+    </p>
+    <p>
+        <strong>ویژگی‌های بازی:</strong><br>
+        - جمع‌آوری امتیاز و توکن با کلیک کردن.<br>
+        - امکان خرید کارت‌ها و ارتقاء سطح برای افزایش پروفیت (سود).<br>
+        - طراحی بصری جذاب و انیمیشن‌های دیدنی.<br>
+        - مناسب برای گذراندن لحظات فراغت با چالش‌های جذاب.
+    </p>
+    <p>
+        <strong>سازنده:</strong> بازی با عشق و خلاقیت توسط <strong>ARVIN</strong> طراحی و ساخته شده است.
+    </p>
+    <p>
+        <strong>راه ارتباطی:</strong> اگر سوال یا پیشنهادی دارید، می‌توانید از طریق تلگرام با سازنده در ارتباط باشید: <a href="https://t.me/aroplays" target="_blank">@aroplays</a>
+    </p>
+    <button id="closeModal">بستن</button>
+</div>
+
+
 
     <!-- Upgrade Modal -->
-    <div id="upgradeModal">
-        <h2>ارتقاء پروفیت</h2>
-        <div class="upgrade-option" id="upgradeOption1">
-            <span>افسایش سرعت گادپوری : قیمت 200 توکن - پروفیت افزوده 300</span>
-            <button id="buyUpgrade1">خرید کارت 1</button>
-        </div>
-        <div class="upgrade-option" id="upgradeOption2">
-            <span>له نشدن با پژو پارس: قیمت 500 توکن - پروفیت افزوده 600</span>
-            <button id="buyUpgrade2">خرید کارت 2</button>
-        </div>
-        <div class="upgrade-option" id="upgradeOption3">
-            <span>حذف دکی: قیمت 1000 توکن - پروفیت افزوده 1200</span>
-            <button id="buyUpgrade3">خرید کارت 3</button>
-        </div>
-        <button id="closeUpgradeModal">بستن</button>
+    <!-- حذف تگ دوتایی و اطمینان از اینکه کد صحیح در صفحه بارگذاری می‌شود -->
+<div id="upgradeModal">
+    <h2>ارتقاء پروفیت</h2>
+    <div class="upgrade-option" id="upgradeOption1">
+        <span>افزایش سرعت گادپوری : قیمت 200 توکن - پروفیت افزوده 300</span>
+        <button id="buyUpgrade1">خرید کارت 1</button>
     </div>
+    <div class="upgrade-option" id="upgradeOption2">
+        <span>له نشدن با پژو پارس: قیمت 500 توکن - پروفیت افزوده 600</span>
+        <button id="buyUpgrade2">خرید کارت 2</button>
+    </div>
+    <div class="upgrade-option" id="upgradeOption3">
+        <span>حذف دکی: قیمت 1000 توکن - پروفیت افزوده 1200</span>
+        <button id="buyUpgrade3">خرید کارت 3</button>
+    </div>
+        <div class="upgrade-option" id="upgradeOption4">
+        <span>افزایش مقدار کیلیک: قیمت 50 توکن - مقدار افزایشی +1</span>
+        <button id="buyUpgrade4">خرید افزایش کیلیک</button>
+    </div>
+    <button id="closeUpgradeModal">بستن</button>
+    
+</div>
+
+        <div id="container">
+            <img id="clickableImage" src="click_image.jpg" alt="Clickable Image">
+        </div>
+    
+    </div>
+<!-- لایه پوششی -->
+<div id="overlay" class="overlay"></div>
+
 
     <script>
         let score = localStorage.getItem('score') ? parseInt(localStorage.getItem('score')) : 0;
@@ -301,60 +656,170 @@
         let upgrade2Profit = 600;
         let upgrade3Price = 1000;
         let upgrade3Profit = 1200;
+         let scale = 1;
+         let clickIncrease = 1;
+         document.addEventListener('DOMContentLoaded', function () {
+    let image = document.getElementById('clickableImage');
+    let container = document.getElementById('container');
+
+    // ایجاد علامت +1 در موقعیت کلیک
+    function createPlusOne(x, y) {
+        let plusOne = document.createElement('div');
+        plusOne.classList.add('plusOne');
+        plusOne.textContent = '+';
+        plusOne.style.left = `${x}px`;
+        plusOne.style.top = `${y}px`;
+
+        container.appendChild(plusOne);
+
+        // حذف علامت +1 بعد از 1.5 ثانیه
+        setTimeout(() => {
+            plusOne.remove();
+        }, 500);
+    }
+
+    // افزودن رویداد برای کلیک
+    image.addEventListener('click', function (e) {
+        let rect = image.getBoundingClientRect();
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+        createPlusOne(x, y);
+    });
+
+    // افزودن رویداد برای لمس
+    image.addEventListener('touchstart', function (e) {
+        e.preventDefault(); // جلوگیری از رفتار پیش‌فرض
+        let rect = image.getBoundingClientRect();
+        let x = e.touches[0].clientX - rect.left;
+        let y = e.touches[0].clientY - rect.top;
+        createPlusOne(x, y);
+    });
+});
+
 
         document.getElementById('score').innerText = 'امتیاز: ' + score;
         document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
         document.getElementById('level').innerText = 'لول: ' + level;
         document.getElementById('profit').innerText = 'پروفیت کفتری: ' + profit;
 
-        document.getElementById('clickableImage').addEventListener('click', function() {
-            score += 1;
-            tokens += 1;
-            document.getElementById('score').innerText = 'امتیاز: ' + score;
-            document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
+       // تگ مربوط به clickImage در قسمت modal به درستی کار نمی‌کند، پس فقط آن را در body نگه دارید.
 
-            localStorage.setItem('score', score);
-            localStorage.setItem('tokens', tokens);
+document.getElementById('clickableImage').addEventListener('click', function() {
+    score += 1;
+    tokens += 1;
+    document.getElementById('score').innerText = 'امتیاز: ' + score;
+    document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
 
-            let clickSound = new Audio('click-sound.mp3');
-            clickSound.play();
-        });
+    localStorage.setItem('score', score);
+    localStorage.setItem('tokens', tokens);
 
-        // Upgrade Modal toggle
-        document.getElementById('upgradeButton').addEventListener('click', function() {
-            document.getElementById('upgradeModal').style.display = 'block';
-        });
+    let clickSound = new Audio('click-sound.mp3');
+    clickSound.play();
+});
 
-        document.getElementById('closeUpgradeModal').addEventListener('click', function() {
-            document.getElementById('upgradeModal').style.display = 'none';
-        });
+// Upgrade Modal toggle
+document.getElementById('upgradeButton').addEventListener('click', function() {
+    document.getElementById('upgradeModal').style.display = 'block';
+});
 
-        // Buying upgrades
-        document.getElementById('buyUpgrade1').addEventListener('click', function() {
-            if (tokens >= upgrade1Price) {
-                tokens -= upgrade1Price;
-                profit += upgrade1Profit;
-                upgrade1Price = Math.floor(upgrade1Price * 1.1);
-                upgrade1Profit = Math.floor(upgrade1Profit * 1.1);
-                localStorage.setItem('tokens', tokens);
-                localStorage.setItem('profit', profit);
-                document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
-                document.getElementById('profit').innerText = 'پروفیت کفتری: ' + profit;
-                alert('کارت 1 خریداری شد!');
-            } else {
-                alert('توکن کافی نیست!');
-            }
-        });
+document.getElementById('closeUpgradeModal').addEventListener('click', function() {
+    document.getElementById('upgradeModal').style.display = 'none';
+});
+
+// Buying upgrades
+document.getElementById('buyUpgrade1').addEventListener('click', function() {
+    if (tokens >= upgrade1Price) {
+        tokens -= upgrade1Price;
+        profit += upgrade1Profit;
+        upgrade1Price = Math.floor(upgrade1Price * 1.1);
+        upgrade1Profit = Math.floor(upgrade1Profit * 1.1);
+        localStorage.setItem('tokens', tokens);
+        localStorage.setItem('profit', profit);
+        document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
+        document.getElementById('profit').innerText = 'پروفیت کفتری: ' + profit;
+        alert('کارت 1 خریداری شد!');
+    } else {
+        alert('توکن کافی نیست!');
+    }
+});
+document.getElementById('buyUpgrade4').addEventListener('click', function() {
+    if (tokens >= 50) {  // بررسی اینکه کاربر توکن کافی دارد
+        tokens -= 50;  // کسر 50 توکن
+        clickIncrease += 1;  // افزایش مقدار افزایشی
+        localStorage.setItem('tokens', tokens);  // ذخیره‌سازی تعداد توکن‌ها در localStorage
+        document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;  // نمایش توکن‌های جدید
+
+        // نمایش پیامی مبنی بر خرید موفقیت‌آمیز
+        alert('مقدار کیلیک افزایش یافت! اکنون + ' + clickIncrease + ' به امتیاز و توکن‌ها اضافه می‌شود.');
+    } else {
+        alert('توکن کافی نیست!');
+    }
+});
+document.getElementById('buyUpgrade2').addEventListener('click', function() {
+    if (tokens >= upgrade2Price) {
+        tokens -= upgrade2Price;
+        profit += upgrade2Profit;
+        upgrade2Price = Math.floor(upgrade2Price * 1.1);
+        upgrade2Profit = Math.floor(upgrade2Profit * 1.1);
+        localStorage.setItem('tokens', tokens);
+        localStorage.setItem('profit', profit);
+        document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
+        document.getElementById('profit').innerText = 'پروفیت کفتری: ' + profit;
+        alert('کارت 2 خریداری شد!');
+    } else {
+        alert('توکن کافی نیست!');
+    }
+});
+
+document.getElementById('buyUpgrade3').addEventListener('click', function() {
+    if (tokens >= upgrade3Price) {
+        tokens -= upgrade3Price;
+        profit += upgrade3Profit;
+        upgrade3Price = Math.floor(upgrade3Price * 1.1);
+        upgrade3Profit = Math.floor(upgrade3Profit * 1.1);
+        localStorage.setItem('tokens', tokens);
+        localStorage.setItem('profit', profit);
+        document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
+        document.getElementById('profit').innerText = 'پروفیت کفتری: ' + profit;
+        alert('کارت 3 خریداری شد!');
+    } else {
+        alert('توکن کافی نیست!');
+    }
+});
+
+        // تغییر دادن رویداد کلیک برای افزایش امتیاز و توکن‌ها بر اساس مقدار جدید
+document.getElementById('clickableImage').addEventListener('click', function() {
+    score += clickIncrease;  // افزایش امتیاز با توجه به مقدار کیلیک
+    tokens += clickIncrease;  // افزایش توکن‌ها با توجه به مقدار کیلیک
+    document.getElementById('score').innerText = 'امتیاز: ' + score;
+    document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
+
+    localStorage.setItem('score', score);
+    localStorage.setItem('tokens', tokens);
+
+    let clickSound = new Audio('click-sound.mp3');
+    clickSound.play();
+});
+
+
 
         document.getElementById('buyUpgrade2').addEventListener('click', function() {
             if (tokens >= upgrade2Price) {
+
                 tokens -= upgrade2Price;
+
                 profit += upgrade2Profit;
+
                 upgrade2Price = Math.floor(upgrade2Price * 1.1);
+
                 upgrade2Profit = Math.floor(upgrade2Profit * 1.1);
+
                 localStorage.setItem('tokens', tokens);
+
                 localStorage.setItem('profit', profit);
+
                 document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
+
                 document.getElementById('profit').innerText = 'پروفیت کفتری: ' + profit;
                 alert('کارت 2 خریداری شد!');
             } else {
@@ -362,15 +827,31 @@
             }
         });
 
+
+
         document.getElementById('buyUpgrade3').addEventListener('click', function() {
+
             if (tokens >= upgrade3Price) {
+
                 tokens -= upgrade3Price;
+
+
                 profit += upgrade3Profit;
+
+
                 upgrade3Price = Math.floor(upgrade3Price * 1.1);
+
+
                 upgrade3Profit = Math.floor(upgrade3Profit * 1.1);
+
+
                 localStorage.setItem('tokens', tokens);
+
+
                 localStorage.setItem('profit', profit);
+
                 document.getElementById('tokens').innerText = 'توکن‌ها: ' + tokens;
+
                 document.getElementById('profit').innerText = 'پروفیت کفتری: ' + profit;
                 alert('کارت 3 خریداری شد!');
             } else {
@@ -378,20 +859,142 @@
             }
         });
 
+
+
+
+
         setInterval(function() {
             profit += 100;
             document.getElementById('profit').innerText = 'پروفیت کفتری: ' + profit;
             localStorage.setItem('profit', profit);
         }, 3600000); // 1 ساعت برای افزایش پروفیت
 
+
+
+
+
         // About Modal
         document.getElementById('aboutButton').addEventListener('click', function() {
             document.getElementById('aboutModal').style.display = 'block';
         });
 
+
+
+
+
         document.getElementById('closeModal').addEventListener('click', function() {
             document.getElementById('aboutModal').style.display = 'none';
         });
+        // نمایش لایه پوششی هنگام باز شدن پنجره آپگرید
+function openUpgradePage() {
+    document.getElementById('overlay').classList.add('active'); // فعال کردن لایه پوششی
+    document.querySelector('.upgrade-section').style.display = 'block'; // نمایش پنجره آپگرید
+}
+
+// مخفی کردن لایه پوششی و پنجره آپگرید
+function closeUpgradePage() {
+    document.getElementById('overlay').classList.remove('active'); // غیرفعال کردن لایه پوششی
+    document.querySelector('.upgrade-section').style.display = 'none'; // مخفی کردن پنجره آپگرید
+}
+
+// افزودن رویداد به دکمه آپگرید برای نمایش آن
+document.getElementById('buyUpgrade4').addEventListener('click', function() {
+    openUpgradePage();  // وقتی دکمه زده می‌شود، پنجره آپگرید نمایش داده می‌شود
+});
+
+// افزودن رویداد برای بستن پنجره آپگرید (در صورتی که دکمه بستن اضافه شود)
+document.getElementById('closeUpgrade').addEventListener('click', function() {
+    closeUpgradePage();  // بستن پنجره آپگرید
+});
+// تابع برای باز کردن پنجره آپگرید
+function openUpgradePage() {
+    document.getElementById('overlay').classList.add('active');
+    document.querySelector('.upgrade-section').style.display = 'block';
+    document.getElementById('background-image').classList.add('hidden');  // مخفی کردن تصویر پس‌زمینه
+    document.getElementById('clickButton').classList.add('hidden');  // مخفی کردن دکمه
+}
+
+// تابع برای بستن پنجره آپگرید
+function closeUpgradePage() {
+    document.getElementById('overlay').classList.remove('active');
+    document.querySelector('.upgrade-section').style.display = 'none';
+    document.getElementById('background-image').classList.remove('hidden');  // نمایش دوباره تصویر
+    document.getElementById('clickButton').classList.remove('hidden');  // نمایش دوباره دکمه
+}
+
+// تابع برای باز کردن پنجره ابوترو
+function openAboutPage() {
+    
+    document.getElementById('overlay').classList.add('active');
+    
+    document.querySelector('.about-section').style.display = 'block';
+    
+    
+    document.getElementById('background-image').classList.add('hidden');  // مخفی کردن تصویر پس‌زمینه
+    document.getElementById('clickButton').classList.add('hidden');  // مخفی کردن دکمه
+}
+
+
+
+// تابع برای بستن پنجره ابوترو
+function closeAboutPage() {
+    document.getElementById('overlay').classList.remove('active');
+    document.querySelector('.about-section').style.display = 'none';
+    document.getElementById('background-image').classList.remove('hidden');  // نمایش دوباره تصویر
+    document.getElementById('clickButton').classList.remove('hidden');  // نمایش دوباره دکمه
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// اضافه کردن رویداد به دکمه‌ها برای باز کردن و بستن پنجره‌ها
+document.getElementById('buyUpgrade4').addEventListener('click', function() {
+    openUpgradePage();  // باز کردن پنجره آپگرید
+});
+
+
+
+
+
+
+document.getElementById('closeUpgrade').addEventListener('click', function() {
+    closeUpgradePage();  // بستن پنجره آپگرید
+});
+
+
+
+
+
+
+
+
+document.getElementById('openAbout').addEventListener('click', function() {
+    openAboutPage();  // باز کردن پنجره ابوترو
+});
+
+
+
+
+
+document.getElementById('closeAbout').addEventListener('click', function() {
+    closeAboutPage();  // بستن پنجره ابوترو
+});
+
+
+
+
+
+
+
     </script>
 </body>
 </html>
